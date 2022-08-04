@@ -12,13 +12,9 @@ public class RunningSumOf1dArray {
 
     public int[] solution(int[] input){
         int[] output = new int[input.length];
+        output[0] = input[0];
 
-        for(int i = 0; i < input.length; i++){
-            if (i == 0){
-                output[i] = input[0];
-                continue;
-            }
-
+        for(int i = 1; i < input.length; i++){
             output[i] = output[i -1] + input[i];
         }
 
