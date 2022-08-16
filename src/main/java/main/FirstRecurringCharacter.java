@@ -17,19 +17,26 @@ public class FirstRecurringCharacter {
     //Given an array = [2,3,4,5]:
     //It should return undefined
 
+    /**
+     * Time complexity: O(n) Solution -> Due to Array Loop
+     * Space complexity: O(n) Because we're adding N elements to the Set (every loop)
+     * @param list
+     * @return
+     */
     static Integer returnFirstRecurring(List<Integer> list){
         Integer firstRecurring = null;
         Set<Integer> pastNumbers = new HashSet<>();
 
-        for(int i = 0; i < list.size(); i++){
+        for(int i = 0; i < list.size(); i++){ //Time Complexity: O(n) -> For
             int currentNumber = list.get(i);
 
+            //Time Complexity: O(1) -> HashTable Related Operations
             if (pastNumbers.contains(currentNumber)){
                 firstRecurring = currentNumber;
                 break;
             }
 
-            pastNumbers.add(currentNumber);
+            pastNumbers.add(currentNumber); // Space complexity: O(n)
         }
 
         return firstRecurring;
