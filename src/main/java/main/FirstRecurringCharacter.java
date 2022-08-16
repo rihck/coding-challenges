@@ -31,7 +31,7 @@ public class FirstRecurringCharacter {
             int currentNumber = list.get(i);
 
             //Time Complexity: O(1) -> HashTable Related Operations
-            if (pastNumbers.contains(currentNumber)){
+            if (pastNumbers.contains(currentNumber) ){
                 firstRecurring = currentNumber;
                 break;
             }
@@ -42,9 +42,41 @@ public class FirstRecurringCharacter {
         return firstRecurring;
     }
 
+    /**
+     * Find X recurring: first, second or third...
+     *     //Given = [2,5,5,2,3] and 2:
+     *     //It should return 2 because it's the 2nd number that repeats
+     *
+     *     //Given an array = [2,5,5,2,3,3] and 3:
+     *     //It should return 3
+     */
+    static Integer returnXRecurring(List<Integer> list, int numRecurring){
+        Integer foundRecurring = null;
+        Set<Integer> pastNumbers = new HashSet<>();
+        int timesOccurred = 0;
+
+        for(int i = 0; i < list.size(); i++){ //Time Complexity: O(n) -> For
+            int currentNumber = list.get(i);
+
+            //Time Complexity: O(1) -> HashTable Related Operations
+            if (pastNumbers.contains(currentNumber) ){
+                timesOccurred++;
+
+                if (timesOccurred == numRecurring) {
+                    foundRecurring = currentNumber;
+                    break;
+                }
+            }
+
+            pastNumbers.add(currentNumber); // Space complexity: O(n)
+        }
+
+        return foundRecurring;
+    }
+
 
     @Test
-    void findRecurring(){
+    void findFirstRecurring(){
         List<Integer> input1 = Arrays.asList(2,5,1,2,3,5,1,2,4);
         List<Integer> input2 = Arrays.asList(2,1,1,2,3,5,1,2,4);
         List<Integer> input3 = Arrays.asList(2,3,4,5);
@@ -55,8 +87,20 @@ public class FirstRecurringCharacter {
         assertNull(returnFirstRecurring(input3));
     }
 
+    @Test
+    void findXRecurring(){
+        List<Integer> input1 = Arrays.asList(2,5,5,2,3);
+        List<Integer> input2 = Arrays.asList(2,5,5,2,3,3);
+        List<Integer> input3 = Arrays.asList(2,3,4,5);
+
+
+        assertEquals(returnXRecurring(input1, 2), 2);
+        assertEquals(returnXRecurring(input2, 3), 3);
+        assertNull(returnXRecurring(input3, 1));
+    }
+
     public static void main(String[] args) {
-        Integer result = returnFirstRecurring(Arrays.asList(2,1,1,2,3,5,1,2,4));
+        Integer result = returnFirstRecurring(Arrays.asList(2,5,5,2,3,5,1,2,4));
 
         System.out.println(result);
     }
