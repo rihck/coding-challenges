@@ -137,7 +137,51 @@ public class BuildOwnLinkedList {
 
         }
 
+        // Original: 1 -> 9 -> 5 -> 16
+        // Expected:  16 -> 5 -> 9 -> 1
+
+        /* 1 Loop
+            9 -> 1 (second.next = first)
+            first = 9 (first = second)
+            second = 5 (second = temp)
+         */
+
+        /* 2 Loop
+            5 -> 9 (second.next = first)
+            first = 5 (first = second)
+            second = 16 (second = temp)
+         */
+
+        /* 3 Loop
+            16 -> 5
+            first = 16
+            second = null
+         */
+
+        // Output: 16 -> 5 -> 9 -> 1 -> 9 (Head still points to old Next [9], we assign it to null outside the loop)
+        // Expect: 16 -> 5 -> 9 -> 1
         public void reverse(){
+            if (this.head.next == null)
+                return;
+
+            Node first = this.head;
+            Node second = first.next;
+
+            while (second != null){
+                Node temp = second.next;
+                second.next = first;
+                first = second;
+                second = temp;
+            }
+
+            this.tail = head;
+
+            //Head still points to old Next [9], we assign it to null outside the loop
+            this.head.next = null;
+            this.head = first;
+        }
+
+        public void reverseOld(){
             Node currentNode = this.head;
             List<Integer> list = new ArrayList<>();
 
