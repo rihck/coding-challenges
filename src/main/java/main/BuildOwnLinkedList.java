@@ -1,6 +1,8 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,11 +15,12 @@ public class BuildOwnLinkedList {
         linkedList.append(5);
         linkedList.append(16);
 
-        System.out.println(linkedList);
-
         linkedList.prepend(1);
 
-        System.out.println(linkedList);
+        // 1 -> 9 -> 10 -> 5 -> 16
+        linkedList.insert(9, 1);
+
+        linkedList.printList();
     }
 
     static class LinkedListt{
@@ -45,6 +48,46 @@ public class BuildOwnLinkedList {
 
             this.head = newNode;
             this.length++;
+        }
+
+        public void insert(int value, int index){
+            Node newNode = new Node(value, null);
+
+            Node currentNode = this.head;
+            Node previousNode = this.head;
+            boolean added = false;
+            int currentIndex = 0;
+
+            while (currentNode != null && !added){
+
+                if (currentIndex == index){
+                    previousNode.next = newNode;
+                    newNode.next = currentNode;
+                    added = true;
+                }
+
+                previousNode = currentNode;
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+
+        }
+
+        public void printList(){
+            Node currentNode = this.head;
+            int currentIndex = 0;
+            List<Integer> list = new ArrayList<>();
+
+            while (currentNode != null ){
+                list.add(currentNode.value);
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+
+            for (Integer value: list) {
+                System.out.println(value);
+            }
+
         }
     }
     static class Node{
