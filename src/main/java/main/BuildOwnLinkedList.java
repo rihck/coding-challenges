@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +16,8 @@ public class BuildOwnLinkedList {
 
         linkedList.prepend(1);
 
-        // 1 -> 9 -> 10 -> 5 -> 16
+        // Oringinal: 1 -> 10 -> 5 -> 16
+        // Expected:  1 -> 9 -> 10 -> 5 -> 16
         linkedList.insert(9, 1);
 
         linkedList.printList();
@@ -51,6 +51,32 @@ public class BuildOwnLinkedList {
         }
 
         public void insert(int value, int index){
+            if (index >= this.length){
+                this.append(value);
+            }
+
+            Node newNode = new Node(value);
+            Node nodeBeforeInsert = traverseToIndex(index-1);
+
+            Node nodeAfterInsert = nodeBeforeInsert.next;
+            nodeBeforeInsert.next = newNode;
+            newNode.next = nodeAfterInsert;
+            
+        }
+
+        private Node traverseToIndex(int index){
+            Node currentNode = this.head;
+            int currentIndex = 0;
+
+            while (currentIndex != index){
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+
+            return currentNode;
+        }
+
+        public void insertOld(int value, int index){
             if (index >= this.length){
                 this.append(value);
             }
@@ -97,6 +123,10 @@ public class BuildOwnLinkedList {
         public Node(int value, Node next){
             this.value = value;
             this.next = next;
+        }
+
+        public Node(int value){
+            this.value = value;
         }
 
         public int value;
