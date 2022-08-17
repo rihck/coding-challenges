@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BuildOwnStack {
     public static void main(String[] args) {
 
-        Stack myStack = new Stack("Google");
+        Stack myStack = new Stack();
+        myStack.push("Google");
         myStack.push("Udemy");
         myStack.push("Discord");
 
@@ -33,13 +34,13 @@ public class BuildOwnStack {
         Node top = null;
         int size = 0;
 
-        Stack(String value){
-            Node newNode = new Node(value);
-            this.bottom = newNode;
-            this.top = newNode;
-        }
-
         Node pop(){
+            if(this.top == null)
+                return null;
+
+            if (this.bottom == this.top)
+                this.bottom = null;
+
             Node nodeToPop = this.top;
 
             this.top = this.top.next;
@@ -54,6 +55,13 @@ public class BuildOwnStack {
 
         Node push(String value){
             Node newNode = new Node(value);
+
+            if (this.size == 0){
+                this.top = newNode;
+                this.bottom = newNode;
+                return newNode;
+            }
+
             Node oldTop = this.top;
             this.top = newNode;
 
@@ -85,7 +93,8 @@ public class BuildOwnStack {
 
     @Test
     void testPush(){
-        Stack myStack = new Stack("Google");
+        Stack myStack = new Stack();
+        myStack.push("Google");
         myStack.push("Udemy");
         myStack.push("Discord");
 
@@ -94,7 +103,8 @@ public class BuildOwnStack {
 
     @Test
     void testPeek(){
-        Stack myStack = new Stack("Google");
+        Stack myStack = new Stack();
+        myStack.push("Google");
         myStack.push("Udemy");
 
         myStack.peek();
@@ -104,7 +114,8 @@ public class BuildOwnStack {
 
     @Test
     void testPop(){
-        Stack myStack = new Stack("Google");
+        Stack myStack = new Stack();
+        myStack.push("Google");
         myStack.push("Udemy");
 
         myStack.pop();
