@@ -14,6 +14,10 @@ public class BuildOwnLinkedList {
         linkedList.append(16);
 
         System.out.println(linkedList);
+
+        linkedList.prepend(1);
+
+        System.out.println(linkedList);
     }
 
     static class LinkedListt{
@@ -35,6 +39,13 @@ public class BuildOwnLinkedList {
             this.tail = newNode;
             this.length++;
         }
+
+        public void prepend(int value){
+            Node newNode = new Node(value, this.head);
+
+            this.head = newNode;
+            this.length++;
+        }
     }
     static class Node{
         public Node(int value, Node next){
@@ -44,10 +55,6 @@ public class BuildOwnLinkedList {
 
         public int value;
         public Node next = null;
-
-        public Node append(int value){return  null;}
-
-
     }
 
 }
