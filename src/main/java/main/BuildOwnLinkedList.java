@@ -25,6 +25,12 @@ public class BuildOwnLinkedList {
         // Expected:  1 -> 9 -> 5 -> 16
         linkedList.remove(2);
         linkedList.printList();
+
+
+        // Oringinal: 1 -> 9 -> 5 -> 16
+        // Expected:  16 -> 5 -> 9 -> 1
+        System.out.println("Reversed: ");
+        linkedList.reverse();
     }
 
     static class LinkedListt{
@@ -127,6 +133,21 @@ public class BuildOwnLinkedList {
 
             for (Integer value: list) {
                 System.out.println(value);
+            }
+
+        }
+
+        public void reverse(){
+            Node currentNode = this.head;
+            List<Integer> list = new ArrayList<>();
+
+            while (currentNode != null ){
+                list.add(currentNode.value);
+                currentNode = currentNode.next;
+            }
+
+            for (int i = list.size() -1; i >= 0; i--){
+                System.out.println(list.get(i));
             }
 
         }
