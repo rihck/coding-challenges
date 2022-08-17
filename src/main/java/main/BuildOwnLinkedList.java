@@ -20,6 +20,10 @@ public class BuildOwnLinkedList {
         // Expected:  1 -> 9 -> 10 -> 5 -> 16
         linkedList.insert(9, 1);
 
+
+        // Oringinal: 1 -> 9 -> 10 -> 5 -> 16
+        // Expected:  1 -> 9 -> 5 -> 16
+        linkedList.remove(2);
         linkedList.printList();
     }
 
@@ -61,7 +65,15 @@ public class BuildOwnLinkedList {
             Node nodeAfterInsert = nodeBeforeInsert.next;
             nodeBeforeInsert.next = newNode;
             newNode.next = nodeAfterInsert;
-            
+
+        }
+
+        public void remove(int index){
+            Node nodeBeforeInsert = traverseToIndex(index-1);
+
+            nodeBeforeInsert.next = nodeBeforeInsert.next.next;
+
+            this.length--;
         }
 
         private Node traverseToIndex(int index){
