@@ -50,6 +50,10 @@ public class BuildOwnDoublyLinkedList {
         }
         //10 -> 5 -> 16
         public void insert(int value, int index){
+            if (index >= this.length){
+                this.append(value);
+            }
+
             Node newNode = new Node(value, null);
 
             Node currentNode = this.head;

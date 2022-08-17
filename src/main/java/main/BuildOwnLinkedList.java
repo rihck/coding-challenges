@@ -51,8 +51,11 @@ public class BuildOwnLinkedList {
         }
 
         public void insert(int value, int index){
-            Node newNode = new Node(value, null);
+            if (index >= this.length){
+                this.append(value);
+            }
 
+            Node newNode = new Node(value, null);
             Node currentNode = this.head;
             Node previousNode = this.head;
             boolean added = false;
