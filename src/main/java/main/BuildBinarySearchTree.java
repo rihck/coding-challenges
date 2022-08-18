@@ -1,5 +1,7 @@
 package main;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,9 @@ public class BuildBinarySearchTree {
         tree.insert(15);
         tree.insert(1);
 
-        tree.traverse(tree.root);
-        System.out.println(tree);
+        //tree.traverse(tree.root);
+        String jsonOutput = new Gson().toJson(tree.root);
+        System.out.println(jsonOutput);
     }
 
     static class BinarySearchTree{
@@ -44,7 +47,7 @@ public class BuildBinarySearchTree {
                     //Right
                     if (currentNode.right == null) {
                         currentNode.right = newNode;
-                        break;
+                        return newNode;
                     }
 
                     currentNode = currentNode.right;
@@ -54,14 +57,12 @@ public class BuildBinarySearchTree {
                     //Left
                     if(currentNode.left == null){
                         currentNode.left = newNode;
-                        break;
+                        return newNode;
                     }
 
                     currentNode = currentNode.left;
                 }
             }
-
-            return newNode;
         }
 
         void traverse(Node node){
