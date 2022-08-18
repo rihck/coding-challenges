@@ -24,11 +24,41 @@ public class BuildBinarySearchTree {
 
         //tree.traverse(tree.root);
         String jsonOutput = new Gson().toJson(tree.root);
-        System.out.println(jsonOutput);
+
+        Node foundNode = tree.lookup(4);
+        System.out.println(foundNode);
     }
 
     static class BinarySearchTree{
         Node root;
+
+        Node lookup(int valueToSearch){
+            if (this.root == null)
+                return null;
+
+            Node currentNode = this.root;
+            while (true){
+                if(currentNode.value == valueToSearch)
+                    return currentNode;
+
+                if (valueToSearch > currentNode.value){
+                    //Right
+                    if (currentNode.right == null)
+                        return null;
+
+                    currentNode = currentNode.right;
+                }
+
+                if(valueToSearch < currentNode.value){
+                   //Left
+                    if (currentNode.left == null)
+                        return null;
+
+                    currentNode = currentNode.left;
+
+                }
+            }
+        }
 
         Node insert(int valueToInsert){
             Node newNode = new Node(valueToInsert);
@@ -78,12 +108,22 @@ public class BuildBinarySearchTree {
         }
     }
     static class Node{
-        Node left;
-        Node right;
         int value;
+        Node left;
+
+        Node right;
 
         Node(int value){
             this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "value=" + value +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
         }
     }
 
