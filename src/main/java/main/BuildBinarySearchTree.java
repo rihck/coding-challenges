@@ -38,24 +38,12 @@ public class BuildBinarySearchTree {
 
             Node currentNode = this.root;
             while (currentNode != null){
-                if(currentNode.value == valueToSearch)
-                    return currentNode;
-
                 if (valueToSearch > currentNode.value){
-                    //Right
-//                    if (currentNode.right == null)
-//                        return null;
-
                     currentNode = currentNode.right;
-                }
-
-                if(valueToSearch < currentNode.value){
-                   //Left
-//                    if (currentNode.left == null)
-//                        return null;
-
+                } else if (valueToSearch < currentNode.value){
                     currentNode = currentNode.left;
-
+                } else{
+                    return currentNode;
                 }
             }
 
