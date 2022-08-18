@@ -36,30 +36,28 @@ public class BuildBinarySearchTree {
 
             Node currentNode = this.root;
 
-            while (currentNode != null){
+            while (true){
                 int currentNodeValue = currentNode.value;
 
                 //PS: It's up to us if we want to put equal values on LEFT or RIGHT
                 if (valueToInsert > currentNodeValue){
                     //Right
-                    if (currentNode.right != null){
-                        currentNode = currentNode.right;
-                    }
-                    else {
+                    if (currentNode.right == null) {
                         currentNode.right = newNode;
-                        currentNode = null;
+                        break;
                     }
+
+                    currentNode = currentNode.right;
                 }
 
                 else { //valueToInsert <= currentNodeValue
                     //Left
-                    if (currentNode.left != null){
-                        currentNode = currentNode.left;
-
-                    } else {
+                    if(currentNode.left == null){
                         currentNode.left = newNode;
-                        currentNode = null;
+                        break;
                     }
+
+                    currentNode = currentNode.left;
                 }
             }
 
