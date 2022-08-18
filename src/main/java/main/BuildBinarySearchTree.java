@@ -37,27 +37,29 @@ public class BuildBinarySearchTree {
                 return null;
 
             Node currentNode = this.root;
-            while (true){
+            while (currentNode != null){
                 if(currentNode.value == valueToSearch)
                     return currentNode;
 
                 if (valueToSearch > currentNode.value){
                     //Right
-                    if (currentNode.right == null)
-                        return null;
+//                    if (currentNode.right == null)
+//                        return null;
 
                     currentNode = currentNode.right;
                 }
 
                 if(valueToSearch < currentNode.value){
                    //Left
-                    if (currentNode.left == null)
-                        return null;
+//                    if (currentNode.left == null)
+//                        return null;
 
                     currentNode = currentNode.left;
 
                 }
             }
+
+            return currentNode;
         }
 
         Node insert(int valueToInsert){
