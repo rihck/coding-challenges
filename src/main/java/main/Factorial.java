@@ -15,11 +15,22 @@ public class Factorial {
         System.out.println(forFindFactorialFrom);
     }
 
+    // 3
+        // 3 * 2 = 6
+    // 2 * 1 = 2
     static int recursiveFindFactorialFrom(int number){
-        if (number != 1)
-            return number * recursiveFindFactorialFrom(number-1);
 
-        return 1;
+        //Approach considering if we pass 1, we want to stop recursion
+        //        if (number != 1)
+        //            return number * recursiveFindFactorialFrom(number-1);
+        //
+        //        return 1;
+
+        // Approach considering if we pass 2, we know 2! is 2, so we return it and stop recursion
+        if (number == 2)
+            return 2;
+
+        return number * recursiveFindFactorialFrom(number-1);
     }
 
     static int forFindFactorialFrom(int number){
