@@ -3,7 +3,9 @@ package main;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Build BST structure and have the following structure
@@ -23,10 +25,14 @@ public class BuildBinarySearchTree {
         tree.insert(1);
 
         //tree.traverse(tree.root);
-        String jsonOutput = new Gson().toJson(tree.root);
+        //String jsonOutput = new Gson().toJson(tree.root);
 
         Node foundNode = tree.lookup(4);
         System.out.println(foundNode);
+
+        System.out.println(tree.bfs());
+
+
     }
 
     static class BinarySearchTree{
@@ -83,6 +89,35 @@ public class BuildBinarySearchTree {
                     currentNode = currentNode.left;
                 }
             }
+        }
+
+        /**
+         * Build BST structure and have the following structure
+         *            9
+         *      4           20
+         *   1    6      15    170
+         */
+        List<Integer> bfs(){
+            Node currentNode = this.root;
+            List<Integer> listReturn = new ArrayList<>();
+            Queue<Node> childNodes = new LinkedList();
+            childNodes.add(currentNode);
+
+            while (childNodes.size() > 0){
+                currentNode = childNodes.poll();
+                listReturn.add(currentNode.value);
+
+                if (currentNode.left != null){
+                    childNodes.add(currentNode.left);
+                }
+
+                if (currentNode.right != null){
+                    childNodes.add(currentNode.right);
+                }
+
+            }
+
+            return listReturn;
         }
 
         void traverse(Node node){
