@@ -64,8 +64,92 @@ Not ordered and **doesn't allow duplicates**
 |---------|----------|----------|----------|
 | TreeSet | O(log n) | O(log n) | O(log n) |
 
+--
+
+### TreeSet Methods
+```java8
+NavigableSet<Integer> set = new TreeSet<Integer>(){{
+        add(1);
+        add(4);
+        add(2);
+        add(3);
+}}; //Output: [1, 2, 3, 4]
+```
+
 PS: As it's a tree structure, we have "tree search methods" implemented in this collection, like:
-- lower: `<` all elements that are lower in the tree
-- floor: `<=` all elements that are lower in the tree OR equal (the element itself included)
-- higher: `>` all elements that are higher
-- ceiling: `>=` all elements that are higher equal (the element itself included)
+- `lower`: `<` Find the **lower closest** in the tree (**DOES NOT CONSIDER** the element passed as parameter)
+```java8
+    set.lower(3); // Output: 2
+```
+
+- `floor`: `<=` Find the **lower closest** in the tree (**DOES CONSIDER** the element passed as parameter)
+```java8
+    set.floor(3); // Output: 3
+```
+
+- `higher`: `>` Find the **higher closed** Element in the tree (**DOES NOT CONSIDER** the element passed as parameter)
+```java8
+    set.higher(3); // Output: 4
+```
+
+- `ceiling`: `>=` Find the **higher closed** Element in the tree (**DOES CONSIDER** the element passed as parameter)
+```java8
+    set.ceiling(3); // Output: 3
+```
+
+
+---
+
+# Maps
+
+Key-value collections that **doesn't allow duplicates KEYS**
+
+## TreeMap
+
+Same thing as "**TreeSet**", the rules applies to the Key (ordering, using Comparator or Comparable) and have **similar methods**:
+
+
+### TreeMap Methods
+
+```java8
+NavigableMap<Integer, String> map = new TreeMap<Integer, String>(){{
+    put(1, "A");
+    put(4, "D");
+    put(3, "C");
+    put(2, "B");
+}}; //Output: {1 : "A"}, {2: "B"}, {3: "C"}, {4: "D"}
+```
+
+- `headMap`: `<=` all elements that are lower (ordered before) that element
+  - **headMap(toKey)**: **All elements** before and **DOES NOT include** the key parameter itself
+  - **headMap(toKey, true)**: **All elements** before and **DOES INCLUDE** the key parameter itself
+```java8
+    System.out.println(map.headMap(3)); //Output: {1 : "A"}, {2: "B"}
+    System.out.println(map.headMap(3, true)); //Output: {1 : "A"}, {2: "B"}, {3: "C"}
+```
+
+- `lowerKey` / `loweEntry`: `<` Find the **lower closest** in the tree -> Method to return only the key or the entry itself  (**DOES NOT CONSIDER** the element passed as parameter)
+```java8
+    map.lowerKey(3); // Output: 2
+    map.loweEntry(3); // Output: {2: "B"}
+```
+
+- `floorKey` / `floorEntry`: `<=` Find the **lower closest** in the tree -> Method to return only the key or the entry itself  (**DOES CONSIDER** the element passed as parameter)
+```java8
+    map.floorKey(3); // Output: 3
+    map.floorEntry(3); // Output: {3: "C"}
+```
+
+- `higherKey` / `higherEntry`: `>` Find the **higher closed** Element in the tree -> Method to return only the key or the entry itself (**DOES NOT CONSIDER** the element passed as parameter)
+```java8
+    map.higherKey(3); // Output: 4
+    map.higherEntry(3); // Output: {4: "D"}
+```
+
+- `ceilingKey` / `ceilingEntry`: `>=` Find the **higher closed** Element in the tree -> Method to return only the key or the entry itself  (**DOES CONSIDER** the element passed as parameter)
+```java8
+    map.ceilingKey(3); // Output: 3
+    map.ceilingEntry(3); // Output: {3: "C"}
+```
+
+
