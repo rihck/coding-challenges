@@ -1,4 +1,4 @@
-package main.java8features;
+package main.javafeatures.java8;
 
 import java.util.Arrays;
 import java.util.Optional;
