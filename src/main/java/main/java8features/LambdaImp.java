@@ -6,6 +6,9 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Source: https://www.youtube.com/watch?v=lbCYLgoVpfQ
+ */
 public class LambdaImp {
 
     public static void main(String[] args) {
