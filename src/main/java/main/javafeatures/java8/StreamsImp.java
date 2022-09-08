@@ -38,6 +38,22 @@ public class StreamsImp {
         list.stream().max(Comparator.naturalOrder());
         list.stream().min(Comparator.reverseOrder());
 
+        //Just playing around comparing anonymous class and lambda sort implementation
+        list.stream().sorted(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return 0;
+            }
+        });
+
+        list.stream().sorted((o1, o2) -> {
+            if (o1 < o2)
+                return -1;
+            if (o1 > o2)
+                return 1;
+
+            return 0;
+        });
 
     }
 }
