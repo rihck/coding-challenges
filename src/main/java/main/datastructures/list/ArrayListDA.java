@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -118,6 +119,15 @@ public class ArrayListDA {
         ArrayList newArrayList = new ArrayList<>(Arrays.asList(person2));
         arrayList.add(person1);
         arrayList.addAll(0, newArrayList);
+
+        assertEquals(arrayList.size(), 2);
+    }
+
+    @Test
+    @DisplayName("O(n log (n)) - sort")
+    void sort(){
+        ArrayList newArrayList = new ArrayList<>(Arrays.asList(person1, person2));
+        newArrayList.sort(Comparator.naturalOrder());
 
         assertEquals(arrayList.size(), 2);
     }
