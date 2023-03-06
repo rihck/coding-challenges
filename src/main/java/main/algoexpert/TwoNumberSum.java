@@ -25,7 +25,7 @@ public class TwoNumberSum {
 
         for(int i = 0; i < input.size(); i++){
             Integer lookFor = totalSum - input.get(i);
-            if (asSet.contains(lookFor))
+            if (asSet.contains(lookFor) && lookFor != input.get(i))
                 return Arrays.asList(input.get(i), lookFor);
         }
 
@@ -40,7 +40,7 @@ public class TwoNumberSum {
 
         for (int i = 0; i < array.length; i++){
             int lookFor = targetSum - array[i];
-            if (asSet.contains(lookFor))
+            if (asSet.contains(lookFor) && lookFor != array[i])
                 return new int[]{array[i], lookFor};
         }
 
@@ -55,7 +55,20 @@ public class TwoNumberSum {
 
         assertEquals(2, result.size());
         assertEquals(2, resultInArray.length);
+    }
 
+    @Test
+    @DisplayName("Happy Path - Containing number that added to itself gives the sum")
+    public void containingNumberAddedToItselfGivesTheSum(){
+        List<Integer> result = twoNumberSum(Arrays.asList(4, 7, 8, 5, -1, 11), 10);
+        assertEquals(2, result.size());
+        assertArrayEquals(Arrays.asList(-1, 11).toArray(), result.toArray()); //Not the best way but works.
+        assertEquals(-1, result.get(0));
+        assertEquals(11, result.get(1));
+
+        int[] resultInArray = twoNumberSum(new int[]{4, 7, 8, 5, -1, 11}, 10);
+        assertEquals(2, resultInArray.length);
+        assertArrayEquals(new int[]{-1, 11}, resultInArray);
     }
 
     @Test
