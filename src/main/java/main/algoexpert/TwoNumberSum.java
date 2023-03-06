@@ -32,12 +32,29 @@ public class TwoNumberSum {
         return new ArrayList<>();
     }
 
+    public int[] twoNumberSum(int[] array, int targetSum) {
+        Set<Integer> asSet = new HashSet<>();
+        for (int i = 0; i < array.length; i++){
+            asSet.add(array[i]);
+        }
+
+        for (int i = 0; i < array.length; i++){
+            int lookFor = targetSum - array[i];
+            if (asSet.contains(lookFor))
+                return new int[]{array[i], lookFor};
+        }
+
+        return new int[0];
+    }
+
     @Test
     @DisplayName("Happy Path")
     public void happyPath(){
         List<Integer> result = twoNumberSum(Arrays.asList(3, 4, 7, 6), 10);
+        int[] resultInArray = twoNumberSum(new int[]{3, 4, 7, 6}, 10);
 
         assertEquals(2, result.size());
+        assertEquals(2, resultInArray.length);
 
     }
 
@@ -45,8 +62,10 @@ public class TwoNumberSum {
     @DisplayName("No match")
     public void noMatch(){
         List<Integer> result = twoNumberSum(Arrays.asList(3, 4, 4, 8), 10);
+        int[] resultInArray = twoNumberSum(new int[]{3, 4, 4, 8 }, 10);
 
         assertEquals(0, result.size());
+        assertEquals(0, resultInArray.length);
     }
 
 }
