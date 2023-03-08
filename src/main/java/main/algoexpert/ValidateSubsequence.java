@@ -4,7 +4,9 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,10 +29,25 @@ public class ValidateSubsequence {
         return isSubSequence;
     }
 
+    public boolean validateSubSequenceWithQueue(List<Integer> array, List<Integer> sequence){
+        Queue<Integer> sequenceQueue = new LinkedList<>();
+        for (int i = 0; i < sequence.size(); i++){
+            sequenceQueue.add(sequence.get(i));
+        }
+
+        for(int i = 0; i < array.size(); i++){
+            if (array.get(i) == sequenceQueue.peek()){
+                sequenceQueue.poll();
+            }
+        }
+
+        return sequenceQueue.isEmpty();
+    }
+
     @Test
     @DisplayName("Contains Partial Sub Sequence")
     public void containsPartialSubSequence(){
-        assertTrue(validateSubSequence(Arrays.asList(1, 7, -1, 10), Arrays.asList(1, -1)));
+        assertTrue(validateSubSequenceWithQueue(Arrays.asList(1, 7, -1, 10), Arrays.asList(1, -1)));
     }
 
     @Test
