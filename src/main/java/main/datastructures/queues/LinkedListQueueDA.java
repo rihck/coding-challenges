@@ -53,7 +53,7 @@ public class LinkedListQueueDA {
     }
 
     @Test
-    @DisplayName("[AsQueue] -> O(1) - pool / poolFirst / poolLast")
+    @DisplayName("[AsQueue] -> O(1) - poll / poolFirst / poolLast")
     void poll(){
         linkedList.add(person1);
         linkedList.add(person2);
