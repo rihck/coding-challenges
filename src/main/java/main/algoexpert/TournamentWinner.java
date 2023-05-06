@@ -7,44 +7,46 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * competitions = [
+ *   HomeTeam | AwayTeam
+ *   ["HTML", "C#"],
+ *   ["C#", "Python"],
+ *   ["Python", "HTML"],
+ * ]
+ * results = [0, 0, 1]
+ * 1 = homeTeam Won
+ * 0 = awayTeam Won
+ *
+ * Output: Python
+ */
+
 public class TournamentWinner {
     public String tournamentWinner(ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results) {
         // Write your code here.
         Map<String, Integer> teamsAndPoints = new HashMap<>();
+        teamsAndPoints.put("none", 0);
         ArrayList<String> match;
+        String homeTeam, awayTeam, winner, highestScoreTeam;
+        highestScoreTeam = "none";
         for(int i = 0; i < competitions.size(); i++){
             match = competitions.get(i);
 
-            // First Team
-            if(!teamsAndPoints.containsKey(match.get(0)))
-                teamsAndPoints.put(match.get(0), 0);
+            homeTeam = match.get(0);
+            awayTeam = match.get(1);
 
-            int whoWon = results.get(i); //O(1)
-            int pointsToAdd = whoWon == 1 ? 3 : 0;
-            teamsAndPoints.put(match.get(0), teamsAndPoints.get(match.get(0)) + pointsToAdd);
+            winner = results.get(i) == 1 ? homeTeam : awayTeam;
 
-            // Second Team
-            if(!teamsAndPoints.containsKey(match.get(1)));
-                teamsAndPoints.put(match.get(1), 0);
+            if (!teamsAndPoints.containsKey(winner))
+                teamsAndPoints.put(winner, 0);
 
-            pointsToAdd = whoWon == 0 ? 3 : 0;
-            teamsAndPoints.put(match.get(1), teamsAndPoints.get(match.get(1)) + pointsToAdd);
+            teamsAndPoints.put(winner, teamsAndPoints.get(winner) + 3);
+
+            if (teamsAndPoints.get(winner) > teamsAndPoints.get(highestScoreTeam))
+                highestScoreTeam = winner;
         }
 
-        // Loop through all elements checking the highest score
-        Iterator<String> iterator = teamsAndPoints.keySet().iterator();
-        int max = 0;
-        String winner = null;
-        while(iterator.hasNext()){
-            String team = iterator.next();
-
-            if (teamsAndPoints.get(team) > max){
-                max = teamsAndPoints.get(team);
-                winner = team;
-            }
-        }
-
-        return winner;
+        return highestScoreTeam;
     }
 
     @Test
