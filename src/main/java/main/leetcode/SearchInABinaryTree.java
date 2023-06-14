@@ -30,8 +30,8 @@ public class SearchInABinaryTree {
 
         TreeNode nodeV4 = new TreeNode(4, nodeV2, nodeV7);
 
-        searchBSTRecursive(nodeV4, 2);
         Assertions.assertEquals(nodeV2, searchBSTRecursive(nodeV4, 2));
+
     }
 
 public class TreeNode {
