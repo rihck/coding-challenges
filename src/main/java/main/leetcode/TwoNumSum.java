@@ -9,21 +9,17 @@ import java.util.Map;
 public class TwoNumSum {
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> previousNumbers = new HashMap<>();
-        int[] resultIndexes = new int[2];
 
-        // nums = [2,7,11,15], target = 9
         for(int i =0; i < nums.length; i++){
             int neededNumber = target - nums[i];
             if (previousNumbers.containsKey(neededNumber)){
-                resultIndexes[0] = previousNumbers.get(neededNumber);
-                resultIndexes[1] = i;
-                return resultIndexes;
+                return new int[] {previousNumbers.get(neededNumber), i};
             }
 
             previousNumbers.put(nums[i], i);
         }
 
-        return resultIndexes;
+        return null;
     }
 
     @Test
