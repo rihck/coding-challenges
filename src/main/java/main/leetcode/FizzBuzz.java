@@ -12,17 +12,14 @@ public class FizzBuzz {
         List<String> builtList = new ArrayList<>();
 
         for(int i = 1; i <= n ; i++){
-            String toAdd = "";
-
-            if(i % 3 == 0)
-                toAdd+= "Fizz";
-            if (i % 5 == 0)
-                toAdd+= "Buzz";
-
-            if(toAdd.isEmpty())
-                toAdd += i;
-
-            builtList.add(toAdd);
+            if(i % 3 == 0 && i % 5 == 0)
+                builtList.add("FizzBuzz");
+            else if (i % 3 == 0)
+                builtList.add("Fizz");
+            else if (i % 5 == 0)
+                builtList.add("Buzz");
+            else
+                builtList.add(String.valueOf(i));
         }
 
         return builtList;
