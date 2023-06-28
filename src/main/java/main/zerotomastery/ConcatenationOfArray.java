@@ -1,4 +1,4 @@
-package main;
+package main.zerotomastery;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

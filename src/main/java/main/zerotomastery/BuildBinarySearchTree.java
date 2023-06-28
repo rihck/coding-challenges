@@ -1,4 +1,4 @@
-package main;
+package main.zerotomastery;
 
 import com.google.gson.Gson;
 
