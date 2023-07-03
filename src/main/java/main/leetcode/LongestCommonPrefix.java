@@ -1,38 +1,41 @@
 package main.leetcode;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
+// https://leetcode.com/problems/longest-common-prefix/
 public class LongestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
-        if(strs.length <= 1) return "";
+        if(strs.length == 0) return "";
+        if (strs.length == 1) return strs[0];
 
-        String first = strs[0];
-        String second = strs[1];
-        String commonLetters = "";
+        String commonPrefix = strs[0];
 
-        for (int i = 0; i < first.length() && i < second.length(); i++){
-            Character currentChar = first.charAt(i);
-            Character currentSecondChar = second.charAt(i);
-            if (currentChar == currentSecondChar)
-                commonLetters+= currentChar;
-        }
+        for (int i = 1; i < strs.length; i++){ //O(N)
+            int pointer = 0;
+            String actualString = strs[i];
 
-        if (commonLetters.length() == 0) return "";
+            while (pointer < commonPrefix.length() && pointer < actualString.length()){
+                if (actualString.charAt(pointer) != commonPrefix.charAt(pointer)) {
+                    break;
+                }
 
-        // strs = ["flower","flow","flight"]
-        for (int i = 2; i < strs.length; i++){
-            String currentString = strs[i];
-            if (currentString.substring(0, commonLetters.length()) != commonLetters)
+                pointer++;
+            }
+
+            if (pointer == 0)
                 return "";
+
+            commonPrefix = commonPrefix.substring(0, pointer);
         }
 
-        return commonLetters;
+        return commonPrefix;
     }
 
     @Test
     public void mainTestCases(){
-        // FAILING: Finding "flow" between first two, Approach of creating rule base on 2 firsts does not work
-        Assert.assertEquals("fl", longestCommonPrefix(new String[]{"flower","flow","flight"}));
+        assertEquals("fl", longestCommonPrefix(new String[]{"flower","flow","flight"}));
+        assertEquals("", longestCommonPrefix(new String[]{"dog", "car", "racecar"}));
+        assertEquals("", longestCommonPrefix(new String[]{"one"}));
     }
 }
