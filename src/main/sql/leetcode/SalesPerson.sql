@@ -1,5 +1,18 @@
 -- https://leetcode.com/problems/sales-person/description/
 
+-- SubQuery Approach
+-- 1) SubQuery to search for the opposite condition (salesPerson who DID HAVE any orders related to the company with the name "RED")
+-- 2) External query using "NOT IN" to discard the salesPerson from the previous step
+
+SELECT s.name
+FROM SalesPerson s
+WHERE s.sales_id NOT IN
+      (
+          SELECT sales_id
+          FROM Orders o
+          INNER JOIN Company c ON (o.com_id = c.com_id)
+          WHERE name = "RED"
+      )
 
 /** Schema
     Table: SalesPerson
