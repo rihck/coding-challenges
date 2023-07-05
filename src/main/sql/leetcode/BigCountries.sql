@@ -68,3 +68,15 @@ When using UNION, each sub-query can use the index of its search, then combine t
     | Algeria     | 37100000   | 2381741 |
     +-------------+------------+---------+
 */
+
+
+/** Schema
+
+*/
+
+---------
+
+/** I/O
+    Input:
+
+*/
