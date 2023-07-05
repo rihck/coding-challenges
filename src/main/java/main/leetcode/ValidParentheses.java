@@ -39,5 +39,8 @@ public class ValidParentheses {
         Assert.assertTrue(isValid("()"));
         Assert.assertTrue(isValid("()[]{}"));
         Assert.assertFalse(isValid("(]"));
+
+        // Failing at first attempt solution
+        Assert.assertFalse(isValid("([)]"));
     }
 }
