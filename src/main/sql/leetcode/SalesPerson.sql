@@ -3,7 +3,6 @@
 -- SubQuery Approach
 -- 1) SubQuery to search for the opposite condition (salesPerson who DID HAVE any orders related to the company with the name "RED")
 -- 2) External query using "NOT IN" to discard the salesPerson from the previous step
-
 SELECT s.name
 FROM SalesPerson s
 WHERE s.sales_id NOT IN
@@ -13,6 +12,17 @@ WHERE s.sales_id NOT IN
           INNER JOIN Company c ON (o.com_id = c.com_id)
           WHERE name = "RED"
       )
+
+-- RIGHT JOIN Approach
+-- The first inner join creates a view for just 'RED' orders
+-- The right join ensures all salespersons are included (even those who do not have RED orders)
+-- The WHERE IS NULL gives salespersons who did not have any RED orders due to the right join
+SELECT s.name
+FROM orders o
+INNER JOIN company c on (o.com_id = c.com_id AND c.name = 'RED')
+RIGHT JOIN salesperson s on s.sales_id = o.sales_id
+WHERE o.sales_id IS NULL
+
 
 /** Schema
     Table: SalesPerson
