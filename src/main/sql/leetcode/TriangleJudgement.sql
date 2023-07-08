@@ -5,7 +5,17 @@ SELECT *, IF(x+y>z AND y+z>x AND z+x>y, "Yes", "No") as Triangle
 FROM Triangle
 
 /** Schema
+    Table: Triangle
 
+    +-------------+------+
+    | Column Name | Type |
+    +-------------+------+
+    | x           | int  |
+    | y           | int  |
+    | z           | int  |
+    +-------------+------+
+    (x, y, z) is the primary key column for this table.
+    Each row of this table contains the lengths of three line segments.
 */
 
     ---------
