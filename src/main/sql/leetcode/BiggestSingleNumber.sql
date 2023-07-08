@@ -1,5 +1,17 @@
 -- https://leetcode.com/problems/biggest-single-number/description/
 
+-- GroupBy Approach
+-- PS: the SELECT statement outside enclosing the search query is a approach to return NULL in case the query doesn't return anything (Refer to: https://stackoverflow.com/questions/17250243/how-to-return-null-when-result-is-empty)
+
+
+select (
+   SELECT MAX(num) num
+   FROM MyNumbers
+   GROUP by num
+   HAVING count(*) <= 1
+   ORDER BY num DESC
+   LIMIT 1
+) as num
 
 /** Schema
     Table: MyNumbers
