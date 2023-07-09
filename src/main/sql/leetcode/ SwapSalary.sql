@@ -7,6 +7,10 @@ CASE sex
   ELSE 'm'
 END;
 
+-- My approach (more performance)
+UPDATE Salary
+SET sex = IF(sex='m', 'f', 'm');
+
 /** Schema
     Table: Salary
 
