@@ -1,5 +1,12 @@
 -- https://leetcode.com/problems/not-boring-movies/
 
+# First Approach beating ~ 15%
+SELECT *
+FROM Cinema
+WHERE id % 2 != 0
+AND description != 'boring'
+ORDER BY rating DESC
+
 /** Schema
     Table: Cinema
 
