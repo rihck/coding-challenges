@@ -74,7 +74,7 @@ When using UNION, each sub-query can use the index of its search, then combine t
 
 */
 
----------
+#---------
 
 /** I/O
     Input:
