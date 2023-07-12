@@ -1,11 +1,21 @@
 -- https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/
 
+-- Group By using sub-table (view)
+SELECT actor_id, director_id
+FROM(
+        SELECT actor_id, director_id, count(timestamp) as cooperated
+        FROM ActorDirector
+        GROUP BY actor_id, director_id
+    ) temp
+WHERE cooperated > 2;
+
+
 -- Did not work after adding the HAVING at the end.
 SELECT actor_id, director_id
 FROM ActorDirector
 WHERE actor_id = director_id
 GROUP by actor_id
-HAVING count(*) > 2
+HAVING count(*) > 2;
 
 
 
