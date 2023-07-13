@@ -18,30 +18,34 @@ public class isPalindrome2 {
         // odd = A  N  A
         // even = A  B  B  A
 
-        String stringLoweredCase = s.toLowerCase();
         int left = 0;
         int right = s.length() - 1;
 
         while (left <= right){
-            Character leftChar =  stringLoweredCase.charAt(left);
-            Character rightChar = stringLoweredCase.charAt(right);
+            char leftChar =  s.charAt(left);
+            char rightChar = s.charAt(right);
 
-            if (leftChar != rightChar)
-                return false;
+            if (!Character.isLetterOrDigit(leftChar)){
+                left++;
+            }
 
-            left++;
-            right--;
+            else if (!Character.isLetterOrDigit(rightChar)){
+                right--;
+            }
+
+            else {
+                if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar))
+                    return false;
+
+                left++;
+                right--;
+            }
         }
 
         return true;
     }
 
-    private boolean isPalindromeFromMiddle(String s){
-
-
-        return false;
-    }
-
+    @Test
     public void validPalindromeWithSpacesAndOtherCharacters(){
         assertTrue(isPalindrome("A man, a plan, a canal: Panama"));
     }
