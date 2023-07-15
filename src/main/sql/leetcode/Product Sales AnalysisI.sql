@@ -5,7 +5,7 @@ SELECT product_name, year, price
 FROM Sales s
 INNER JOIN Product p ON (p.product_id = s.product_id);
 
--- More performance approach
+-- Other approach (less performance)
 SELECT DISTINCT (p.product_name, s.year, s.price)
 FROM (SELECT DISTINCT product_id, year, price FROM Sales) s
 INNER JOIN Product as P
