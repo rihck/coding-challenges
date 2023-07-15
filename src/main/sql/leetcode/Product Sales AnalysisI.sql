@@ -1,5 +1,12 @@
 -- https://leetcode.com/problems/product-sales-analysis-i/
 
+-- JOIN Approach
+SELECT product_name, year, price
+FROM Sales s
+INNER JOIN Product p ON (p.product_id = s.product_id)
+
+
+
 /** Schema
     Table: Sales
 
