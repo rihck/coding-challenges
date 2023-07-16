@@ -1,5 +1,10 @@
 -- https://leetcode.com/problems/project-employees-i/
 
+SELECT project_id, avg(e.experience_years) average_years
+FROM Employee e
+INNER JOIN Project p USING(employee_id)
+GROUP BY p.project_id
+
 /** Schema
     Table: Project
 
