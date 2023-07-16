@@ -1,7 +1,7 @@
 -- https://leetcode.com/problems/project-employees-i/
 
 -- First solution
-SELECT project_id, avg(e.experience_years) average_years
+SELECT project_id, round(avg(e.experience_years), 2) average_years
 FROM Employee e
 INNER JOIN Project p USING(employee_id)
 GROUP BY p.project_id
