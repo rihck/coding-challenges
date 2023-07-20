@@ -63,8 +63,11 @@ public class BattleshipsInABoard {
 
         board[l][c] = '.';
         replaceNeighbors(board, l, c + 1);
-        replaceNeighbors(board, l, c - 1);
         replaceNeighbors(board, l + 1, c);
+
+        // Maybe these lines can be removed
+        // Because a previous "replaceNeighbors" would have be removed considering the way we're traversing
+        replaceNeighbors(board, l, c - 1);
         replaceNeighbors(board, l - 1, c);
     }
 
