@@ -20,19 +20,16 @@ public class MergeStringsAlternately {
             return word1;
 
         StringBuilder result = new StringBuilder();
-        int word1Pointer = 0;
-        int word2Pointer = 0;
+        int pointer = 0;
 
-        while (word1Pointer < word1.length() || word2Pointer < word2.length()){
-            if (word1Pointer < word1.length()){
-                result.append(word1.charAt(word1Pointer));
-                word1Pointer++;
-            }
+        while (pointer < word1.length() || pointer < word2.length()){
+            if (pointer < word1.length())
+                result.append(word1.charAt(pointer));
 
-            if (word2Pointer < word2.length()){
-                result.append(word2.charAt(word2Pointer));
-                word2Pointer++;
-            }
+            if (pointer < word2.length())
+                result.append(word2.charAt(pointer));
+
+            pointer++;
         }
 
         return result.toString();
