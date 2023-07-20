@@ -1,16 +1,38 @@
 package main.leetcode;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/battleships-in-a-board/
  * TYPICAL Graph Problem, it's all about traversing a Graph, understanding this will help you in the future.
  */
 public class BattleshipsInABoard {
+
+    public int countBattleships(char[][] board) {
+        int countBattleShipsFound = 0;
+        for (int l = 0; l < board.length; l++){
+            for (int c = 0; c < board[l].length; c++){
+                if (board[l][c] == '.')
+                    continue;
+
+                if (l > 0 && board[l -1][c] == 'X')
+                    continue;
+
+                if (c > 0 && board[l][c -1] == 'X')
+                    continue;
+
+                countBattleShipsFound++;
+            }
+        }
+
+        return countBattleShipsFound;
+    }
+
     public int countBattleshipsRecursivelyTraversingGraph(char[][] board) {
         int battleShipsFound = 0;
 
@@ -69,8 +91,11 @@ public class BattleshipsInABoard {
         input[3][2] = '.';
         input[3][3] = '.';
 
-        int returned = countBattleshipsRecursivelyTraversingGraph(input);
-        Assert.assertEquals(2, returned);
+        int returnBetterSolution = countBattleships(input);
+        assertEquals(2, returnBetterSolution);
+
+        int returnedRecursiveSolution = countBattleshipsRecursivelyTraversingGraph(input);
+        assertEquals(2, returnedRecursiveSolution);
     }
 
     public static void main(String[] args) {
