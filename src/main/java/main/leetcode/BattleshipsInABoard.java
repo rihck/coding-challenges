@@ -17,15 +17,22 @@ public class BattleshipsInABoard {
         int countBattleShipsFound = 0;
         for (int l = 0; l < board.length; l++){
             for (int c = 0; c < board[l].length; c++){
+
+                // If we are in a Period we don't care
                 if (board[l][c] == '.')
                     continue;
 
+                // If the cell above us is an X means we're still counting the same battleship in the VERTICAL
+                // We check "l > 0" to make sure we're not on the first line, and we can actually check on our TOP
                 if (l > 0 && board[l -1][c] == 'X')
                     continue;
 
+                // If the cell on our left is an X means we're still counting the same battleship in the HORIZONTAL
+                // We check if "c > 0" to make sure we're not on the first column and we can actually check on our LEFT
                 if (c > 0 && board[l][c -1] == 'X')
                     continue;
 
+                // If none of these statements are true means that we found our FIRST X of our battleship and we can count it
                 countBattleShipsFound++;
             }
         }
