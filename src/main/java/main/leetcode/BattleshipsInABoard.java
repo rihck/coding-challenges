@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/battleships-in-a-board/
- * TYPICAL Graph Problem, its all about traversing a Graph, understanding this will help you in the future.
+ * TYPICAL Graph Problem, it's all about traversing a Graph, understanding this will help you in the future.
  */
 public class BattleshipsInABoard {
-    public int countBattleships(char[][] board) {
+    public int countBattleshipsRecursivelyTraversingGraph(char[][] board) {
         int battleShipsFound = 0;
 
         for (int l = 0; l < board.length; l++){
@@ -19,12 +19,24 @@ public class BattleshipsInABoard {
                 char value = board[l][c];
 
                 if (value == 'X'){
-
+                    battleShipsFound++;
+                    replaceNeighbors(board, l, c);
                 }
             }
         }
 
         return battleShipsFound;
+    }
+
+    private void replaceNeighbors(char[][] board, int l, int c) {
+        if (l < 0 || l >= board.length || c < 0 || c >= board[l].length || board[l][c] != 'X')
+            return;
+
+        board[l][c] = '.';
+        replaceNeighbors(board, l, c + 1);
+        replaceNeighbors(board, l, c - 1);
+        replaceNeighbors(board, l + 1, c);
+        replaceNeighbors(board, l - 1, c);
     }
 
     @Test
@@ -57,7 +69,7 @@ public class BattleshipsInABoard {
         input[3][2] = '.';
         input[3][3] = '.';
 
-        int returned = countBattleships(input);
+        int returned = countBattleshipsRecursivelyTraversingGraph(input);
         Assert.assertEquals(2, returned);
     }
 
