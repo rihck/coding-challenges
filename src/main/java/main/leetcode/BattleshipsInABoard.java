@@ -49,6 +49,8 @@ public class BattleshipsInABoard {
 
                 if (value == 'X'){
                     battleShipsFound++;
+
+                    // Once we found an X, we visit the neighbors horizontally and vertically replacing the X's by "."
                     replaceNeighbors(board, l, c);
                 }
             }
@@ -58,6 +60,8 @@ public class BattleshipsInABoard {
     }
 
     private void replaceNeighbors(char[][] board, int l, int c) {
+        // The condition to stop the recursion, basically first 4 conditions checking we don't go out of Bound
+        // And the Last One IF we found an "."
         if (l < 0 || l >= board.length || c < 0 || c >= board[l].length || board[l][c] != 'X')
             return;
 
