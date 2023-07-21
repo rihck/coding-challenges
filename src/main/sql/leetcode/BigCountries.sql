@@ -1,5 +1,7 @@
 -- https://leetcode.com/problems/big-countries/
 
+-- Revisited as part of SQL 50 Study Plan
+
 -- Basic solution
 SELECT name, population, area
 FROM World
