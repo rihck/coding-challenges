@@ -1,5 +1,7 @@
 -- https://leetcode.com/problems/find-customer-referee/
 
+-- Revisited as part of SQL 50 Study Plan
+
 -- Basic Approach
 SELECT name
 FROM Customer
