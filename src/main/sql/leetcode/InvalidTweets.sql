@@ -2,7 +2,23 @@
 
 SELECT tweet_id
 FROM Tweets
-WHERE CHAR_LENGTH(content) > 15
+WHERE CHAR_LENGTH(content) > 15;
+
+SELECT tweet_id
+FROM Tweets
+WHERE LENGTH(content) > 15;
+
+#     Reference:
+# https://stackoverflow.com/questions/1734334/mysql-length-vs-char-length?rq=1
+#
+# LENGTH() returns the length of the string measured in bytes.
+# CHAR_LENGTH() returns the length of the string measured in characters.
+# This is especially relevant for Unicode, in which most characters are encoded in two bytes, or UTF-8, where the number of bytes varies.
+#
+#     Example:
+#
+# SELECT LENGTH('€')  # is equal to 3
+# SELECT CHAR_LENGTH('€') # is equal to 1
 
 /**
   Schema
