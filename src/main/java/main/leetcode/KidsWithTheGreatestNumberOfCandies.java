@@ -43,7 +43,6 @@ public class KidsWithTheGreatestNumberOfCandies {
                 output.add(false);
         }
 
-
         return output;
     }
 
