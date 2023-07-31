@@ -1,5 +1,23 @@
 -- https://leetcode.com/problems/product-sales-analysis-i/?envType=study-plan-v2&envId=top-sql-50
 
+-- JOIN Approach
+SELECT product_name, year, price
+FROM Sales s
+INNER JOIN Product p ON (p.product_id = s.product_id);
+
+-- Other approach (less performance)
+SELECT DISTINCT (p.product_name, s.year, s.price)
+FROM (SELECT DISTINCT product_id, year, price FROM Sales) s
+INNER JOIN Product as P
+USING (product_id) -- USING is the same as "ON" but you use that when both tables JOINS on the same field name.
+-- ON (s.product_id = p.product_id)
+
+/*
+ Likely what is happening is that in the Sales table there are multiple transactions of the
+ same product_id, year, price at different quantity. As a result, if DISTINCT entries
+ were retrieved before joining with Product table, it runs a lot faster.
+ */
+
 /**
   Schema
 
