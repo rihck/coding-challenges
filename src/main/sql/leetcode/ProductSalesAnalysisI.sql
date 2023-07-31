@@ -1,4 +1,4 @@
--- https://leetcode.com/problems/product-sales-analysis-i/
+-- https://leetcode.com/problems/product-sales-analysis-i/?envType=study-plan-v2&envId=top-sql-50
 
 -- JOIN Approach
 SELECT product_name, year, price
@@ -18,10 +18,10 @@ USING (product_id) -- USING is the same as "ON" but you use that when both table
  were retrieved before joining with Product table, it runs a lot faster.
  */
 
+/**
+  Schema
 
-/** Schema
-    Table: Sales
-
+  Table: Sales
     +-------------+-------+
     | Column Name | Type  |
     +-------------+-------+
@@ -37,7 +37,8 @@ USING (product_id) -- USING is the same as "ON" but you use that when both table
     Note that the price is per unit.
 
 
-  Table: Product
+    Table: Product
+
     +--------------+---------+
     | Column Name  | Type    |
     +--------------+---------+
@@ -46,11 +47,15 @@ USING (product_id) -- USING is the same as "ON" but you use that when both table
     +--------------+---------+
     product_id is the primary key of this table.
     Each row of this table indicates the product name of each product.
-*/
 
-#---------
+ */
 
-/** I/O
+
+/**
+  I/O
+
+  Example 1:
+
     Input:
     Sales table:
     +---------+------------+------+----------+-------+
@@ -80,4 +85,4 @@ USING (product_id) -- USING is the same as "ON" but you use that when both table
     From sale_id = 1, we can conclude that Nokia was sold for 5000 in the year 2008.
     From sale_id = 2, we can conclude that Nokia was sold for 5000 in the year 2009.
     From sale_id = 7, we can conclude that Apple was sold for 9000 in the year 2011.
-*/
+ */
