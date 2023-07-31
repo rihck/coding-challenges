@@ -23,6 +23,27 @@ public class KidsWithTheGreatestNumberOfCandies {
      *
      */
 
+    // O(N) solution
+    // Find the max of candies, then traverse to check if each candy[i] + extraCandies >= max.
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> ans = new ArrayList<>(candies.length);
+        int max = 0;
+        for (int candy : candies) {
+            max = Math.max(candy, max);
+        }
+        for (int candy : candies) {
+            ans.add(candy + extraCandies >= max);
+        }
+        return ans;
+    }
+
+    // O(N) solution with Java8 Lambda
+    // Find the max of candies, then traverse to check if each candy[i] + extraCandies >= max.
+    public List<Boolean> kidsWithCandiesStreamJava8(int[] candies, int extraCandies) {
+        int max = Arrays.stream(candies).max().getAsInt();
+        return Arrays.stream(candies).mapToObj(candy -> candy + extraCandies >= max).collect(Collectors.toList());
+    }
+
     // Still Bad performance (O(log(n)) -> BST Search inside a O(N) Loop
     public List<Boolean> kidsWithCandiesBst(int[] candies, int extraCandies) {
         List<Boolean> output = new ArrayList<>();
