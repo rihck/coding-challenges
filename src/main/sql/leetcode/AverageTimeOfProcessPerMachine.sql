@@ -8,6 +8,15 @@ FROM Activity a1
      (a1.activity_type = 'start' AND a2.activity_type = 'end')
 GROUP BY a1.machine_id;
 
+-- SubQuery Solution
+SELECT a.machine_id,
+    round(
+                (SELECT avg(a1.timestamp) FROM Activity a1 WHERE a1.activity_type = 'end' AND a1.machine_id = a.machine_id) -
+                (SELECT avg(a1.timestamp) FROM Activity a1 WHERE a1.activity_type = 'start' AND a1.machine_id = a.machine_id)
+        ,3) as processing_time
+FROM Activity a
+GROUP BY a.machine_id
+
 /** Schema
 
   Table: Activity
