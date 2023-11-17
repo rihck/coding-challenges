@@ -32,9 +32,6 @@ public class CoinChangeMiniumCoinsGreedy {
     public static int findCoinChangeMinimumCoinsFirst(int[] coins, int value){
         List<Integer> coinChange = new ArrayList<>();
 
-        // {1, 2, 5, 10, 20, 50, 100, 500, 1000}
-        // 70
-
         for (int i = coins.length -1; i >= 0;){
             int currentCoin = coins[i];
 
