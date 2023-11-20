@@ -9,61 +9,71 @@ import static org.junit.Assert.assertEquals;
 
 public class CoinChangeMiniumCoinsGreedy {
 
-
-    public static int findCoinChangeMinimumCoinsSecond(int[] coins, int value){
-        List<Integer> coinChange = new ArrayList<>();
-
-        int coinPointer = coins.length - 1;
-        while (value != 0 && coinPointer >= 0){
-            int currentCoin = coins[coinPointer];
-
-            if (value >= currentCoin){
-                coinChange.add(currentCoin);
-                value -= currentCoin;
-            }
-            else {
-                coinPointer--;
-            }
-        }
-
-        return coinChange.size();
-    }
-
-    public static int findCoinChangeMinimumCoinsFirst(int[] coins, int value){
-        List<Integer> coinChange = new ArrayList<>();
-
-        for (int i = coins.length -1; i >= 0;){
-            int currentCoin = coins[i];
-
-            if (value >= currentCoin){
+    public static List<Integer> firstVariationInfiniteCoins(List<Integer> coins, int value){
+        // 10, 20, 50, 100
+        // 70
+        List<Integer> result = new ArrayList<>();
+        for(int i = coins.size() -1; i >= 0;){
+            Integer currentCoin = coins.get(i);
+            if(value >= currentCoin){
                 value-=currentCoin;
-                coinChange.add(currentCoin);
+                result.add(currentCoin);
+                continue;
             }
-            else i--;
 
-            System.out.println(currentCoin);
+            i--;
         }
 
-        return coinChange.size();
+        System.out.println(result);
+        return result;
     }
 
-    @Test
-    public void emptyOrNullString(){
-        int[] coins = {1, 2, 5, 10, 20,
-                50, 100, 500, 1000};
+    public static int secondVariationNotInfiniteCoins(List<Integer> coins, int value){
 
-        //assertEquals(2, findCoinChangeMinimumCoinsFirst(coins, 70));
-        assertEquals(2, findCoinChangeMinimumCoinsSecond(coins, 70));
+        int result = 0;
+        for(int i = coins.size() - 1; i >= 0; i--){
+            if(value >= coins.get(i)){
+                value-=coins.get(i);
+                result++;
+            }
+        }
 
-        assertEquals(2, findCoinChangeMinimumCoinsFirst(new int[]{1, 2, 5, 10, 20, 50, 100, 500, 1000}, 40));
-        assertEquals(2, findCoinChangeMinimumCoinsSecond(new int[]{1, 2, 5, 10, 20, 50, 100, 500, 1000}, 40));
-
-        assertEquals(3, findCoinChangeMinimumCoinsFirst(new int[]{5, 10, 20, 25}, 70));
-        assertEquals(3, findCoinChangeMinimumCoinsSecond(new int[]{5, 10, 20, 25}, 70));
-
-        assertEquals(5, findCoinChangeMinimumCoinsFirst(new int[]{5, 10, 20, 25, 50}, 140));
-        assertEquals(5, findCoinChangeMinimumCoinsSecond(new int[]{5, 10, 20, 25, 50}, 140));
+        return result;
     }
+
+    public static int[] thirdVariationPrimitives(int[] coins, int value){
+
+        List<Integer> returned = new ArrayList<>();
+        for(int i = coins.length - 1; i >= 0;){
+            if(value >= coins[i]){
+                value-=coins[i];
+                returned.add(coins[i]);
+                continue;
+            }
+
+            i--;
+        }
+
+        return returned.stream().mapToInt(i -> i.intValue()).toArray();
+    }
+
+//    @Test
+//    public void emptyOrNullString(){
+//        int[] coins = {1, 2, 5, 10, 20,
+//                50, 100, 500, 1000};
+//
+//        assertEquals(2, firstVariationInfiniteCoins(coins, 70));
+//        assertEquals(2, findCoinChangeMinimumCoinsSecond(coins, 70));
+//
+//        assertEquals(2, firstVariationInfiniteCoins(new int[]{1, 2, 5, 10, 20, 50, 100, 500, 1000}, 40));
+//        assertEquals(2, findCoinChangeMinimumCoinsSecond(new int[]{1, 2, 5, 10, 20, 50, 100, 500, 1000}, 40));
+//
+//        assertEquals(3, firstVariationInfiniteCoins(new int[]{5, 10, 20, 25}, 70));
+//        assertEquals(3, findCoinChangeMinimumCoinsSecond(new int[]{5, 10, 20, 25}, 70));
+//
+//        assertEquals(5, firstVariationInfiniteCoins(new int[]{5, 10, 20, 25, 50}, 140));
+//        assertEquals(5, findCoinChangeMinimumCoinsSecond(new int[]{5, 10, 20, 25, 50}, 140));
+//    }
 
 
 }
