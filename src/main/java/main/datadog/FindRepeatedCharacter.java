@@ -1,41 +1,63 @@
 package main.datadog;
 
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FindRepeatedCharacter {
 
     // Count number of repetition in a given string
-    public static String countNumberOfRepetitionInAGivenString(String word){
+    public static List<String> findRepeatedCharacter(String word){
 
-        Map<Character, Integer> repetitionMap = new HashMap<>();
-        for (int i = 0; i < word.length(); i++){
-            Character current = word.charAt(i);
+        Map<Character, Integer> stringCount = new HashMap<>();
+        for(int i = 0; i < word.length(); i++){
+            Character currentChar = word.charAt(i);
+            if(!stringCount.containsKey(currentChar)){
+                stringCount.put(currentChar, 0);
+            }
 
-            if (!repetitionMap.containsKey(current))
-                repetitionMap.put(current, 0);
-
-            repetitionMap.put(current, repetitionMap.get(current) + 1);
+            stringCount.put(currentChar, stringCount.get(currentChar) + 1);
         }
 
-        Set<Map.Entry<Character, Integer>> entries = repetitionMap.entrySet();
-        StringBuilder builder = new StringBuilder();
-        for (Map.Entry<Character, Integer> entry : entries) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-            builder.append(entry.getKey()).append(entry.getValue());
+        return stringCount.entrySet().stream().map(e -> e.getKey() + "" + e.getValue()).collect(Collectors.toList());
+    }
+
+    public static String findFirstRepeatedCharacter(String word){
+        Map<Character, Integer> count = new LinkedHashMap<>();
+
+        for(int i = word.length()-1; i >= 0; i--){
+            Character currentChar = word.charAt(i);
+            if(!count.containsKey(currentChar)){
+                count.put(currentChar, 0);
+            }
+
+            count.put(currentChar, count.get(currentChar) + 1);
         }
 
-        return builder.toString();
+        return count.entrySet().stream()
+                .filter(e -> e.getValue() > 1)
+                .findFirst()
+                .map(e -> String.valueOf(e.getKey()))
+                .orElse(null);
     }
 
-    @Test
-    public void emptyOrNullString(){
-        assertEquals("a4b3", countNumberOfRepetitionInAGivenString("aaaabbb"));
+    public static String findFirstRepeatedCharacterUsingSet(String word){
+        Set<Character> count = new HashSet<>();
+
+        for(int i = word.length()-1; i >= 0; i--){
+            Character currentChar = word.charAt(i);
+
+            if(count.contains(currentChar))
+                return String.valueOf(currentChar);
+
+            count.add(currentChar);
+        }
+
+        return null;
     }
+
+//    @Test
+//    public void emptyOrNullString(){
+//        assertEquals("a4b3", countNumberOfRepetitionInAGivenString("aaaabbb"));
+//    }
 
 }
