@@ -8,14 +8,14 @@ import java.util.Queue;
 public class BfsTreeImplementation {
 
     public static void main(String[] args) {
-        Node root = Node.createDefaultTree();
+        Node<String> root = Node.createDefaultTree();
 
-        Queue<Node> queue = new LinkedList<>();
+        Queue<Node<String>> queue = new LinkedList<>();
         queue.add(root);
 
         List<String> result = new ArrayList<>();
         while (!queue.isEmpty()){
-            Node current = queue.poll();
+            Node<String> current = queue.poll();
             result.add(current.value);
 
             if (current.left != null) queue.add(current.left);
