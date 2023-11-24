@@ -23,7 +23,7 @@ public class Node { String value;
                 '}';
     }
 
-    public Node createDefaultTree(){
+    public static Node createDefaultTree(){
         //         a
 //          b              c
 //      d      e        f     g
