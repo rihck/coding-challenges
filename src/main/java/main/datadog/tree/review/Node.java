@@ -24,7 +24,7 @@ public class Node<T> {
                 '}';
     }
 
-    public static Node<String> createDefaultTree(){
+    public static Node<String> createDefaultStringTree(){
         //         a
 //          b              c
 //      d      e        f     g
@@ -41,5 +41,22 @@ public class Node<T> {
         Node<String> a = new Node<>("a", b, c);
 
         return a;
+    }
+
+    public static Node<Integer> createDefaultIntegerTree(){
+        //         3
+//          11              4
+//      4      2        ?     1
+
+        Node<Integer> four = new Node<>(4);
+        Node<Integer> two = new Node<>(2);
+        Node<Integer> eleven = new Node<>(11, four, two);
+
+        Node<Integer> one = new Node<>(1);
+        Node<Integer> four2 = new Node<>(4, null, one);
+
+        Node<Integer> three = new Node<>(3, eleven, four2);
+
+        return three;
     }
 }

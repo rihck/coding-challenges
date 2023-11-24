@@ -8,7 +8,7 @@ import java.util.Queue;
 public class BfsTreeImplementation {
 
     public static void main(String[] args) {
-        Node<String> root = Node.createDefaultTree();
+        Node<String> root = Node.createDefaultStringTree();
 
         Queue<Node<String>> queue = new LinkedList<>();
         queue.add(root);

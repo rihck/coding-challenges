@@ -6,7 +6,7 @@ public class FindValueInTreeRecursive {
     public static void main(String[] args) {
 
         // Recursive
-        Node root = Node.createDefaultTree();
+        Node root = Node.createDefaultStringTree();
         boolean result = findValueInTree(root, "e");
         System.out.println(result);
 
