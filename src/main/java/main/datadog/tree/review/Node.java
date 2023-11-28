@@ -59,4 +59,16 @@ public class Node<T> {
 
         return three;
     }
+
+    public static Node<Integer> createIntegerTreeToCalculateRootToLeaft(){
+        Node<Integer> four = new Node<>(4);
+        Node<Integer> two = new Node<>(2);
+        Node<Integer> eleven = new Node<>(11, four, two);
+
+        Node<Integer> one = new Node<>(1);
+        Node<Integer> three = new Node<>(3, null, one);
+
+        Node<Integer> five = new Node<>(5, eleven, three);
+        return five;
+    }
 }
