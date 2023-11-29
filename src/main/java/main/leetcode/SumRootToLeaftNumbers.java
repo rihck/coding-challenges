@@ -3,6 +3,8 @@ package main.leetcode;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Stack;
+
 // https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
 public class SumRootToLeaftNumbers {
 
@@ -10,6 +12,46 @@ public class SumRootToLeaftNumbers {
     public static int sumNumbers(TreeNode root) {
         dfs(root, 0);
         return total;
+    }
+
+    public static int sumNumbersStack(TreeNode root) {
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Stack<Integer> sumStack = new Stack<>();
+
+        nodeStack.push(root);
+        sumStack.push(0);
+        int totalSum = 0;
+
+                /*
+                  1
+               /    \
+             2       3
+           /   \      \
+          4     5      6
+
+         */
+        while (!nodeStack.empty()) {
+            TreeNode currentNode = nodeStack.pop(); //2
+            Integer currentSum = sumStack.pop(); // 1
+
+            currentSum = currentSum * 10; // 10
+            currentSum = currentSum + currentNode.val; // 12
+
+            if (currentNode.left == null && currentNode.right == null){ // false
+                totalSum += currentSum;
+            }
+
+            if (currentNode.right != null){
+                sumStack.push(currentSum);
+                nodeStack.push(currentNode.right);
+            }
+            if (currentNode.left != null){
+                sumStack.push(currentSum);
+                nodeStack.push(currentNode.left);
+            }
+        }
+
+        return totalSum;
     }
 
     private static void dfs(TreeNode node, int sum) {
@@ -56,6 +98,7 @@ public class SumRootToLeaftNumbers {
         TreeNode four = new TreeNode(4, nine, zero);
 
         Assert.assertEquals(1026, sumNumbers(four));
+        Assert.assertEquals(1026, sumNumbersStack(four));
     }
 
     class TreeNode {
