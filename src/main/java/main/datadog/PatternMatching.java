@@ -5,6 +5,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/** Possible Problem Statement
+ * Create an algorithm that validates whether a given pattern string aligns with a test string. The pattern string may contain alphanumeric characters and numeric placeholders. The algorithm should compare this pattern with the test string, considering both exact character matches and designated placeholders. Determine if the test string matches the pattern criteria, returning **`true`** if all characters align or act as placeholders; otherwise, return **`false`**.
+ *
+ * This problem requires a function that takes two strings as input: a pattern string and a test string. The function should assess whether the characters in the test string correspond to the pattern criteria, returning **`true`** if they align with the pattern or act as placeholders and **`false`** otherwise.
+ */
 public class PatternMatching {
 
     public boolean validatePattern(String pattern, String word) {
