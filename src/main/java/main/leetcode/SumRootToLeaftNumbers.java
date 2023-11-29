@@ -38,6 +38,15 @@ public class SumRootToLeaftNumbers {
 
     @Test
     public void treeLevelTree() {
+        /*
+                  1
+               /    \
+             2       3
+           /   \      \
+          4     5      6
+
+         */
+
         TreeNode five = new TreeNode(5);
         TreeNode one = new TreeNode(1);
         TreeNode nine = new TreeNode(9, five, one);
