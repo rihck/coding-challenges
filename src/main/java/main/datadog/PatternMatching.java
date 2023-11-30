@@ -19,12 +19,12 @@ public class PatternMatching {
         for (int i = 0; i < pattern.length(); i++) {
             char currentChar = pattern.charAt(i);
             if (Character.isDigit(currentChar)) {
-                for (int j = 0; j < Character.getNumericValue(currentChar); j++) {
-                    newPattern.append(UNDERSCORE);
-                }
+                newPattern.append(replaceNumberByUnderscore(currentChar));
             }
-            else
+            else {
                 newPattern.append(currentChar);
+            }
+
         }
 
         String newPatternString = newPattern.toString();
@@ -42,6 +42,14 @@ public class PatternMatching {
 
         return true;
 
+    }
+
+    private static String replaceNumberByUnderscore(char currentChar) {
+        StringBuilder repeatBuilder = new StringBuilder();
+        for (int j = 0; j < Character.getNumericValue(currentChar); j++) {
+            repeatBuilder.append('_');
+        }
+        return repeatBuilder.toString();
     }
 
     @Test
