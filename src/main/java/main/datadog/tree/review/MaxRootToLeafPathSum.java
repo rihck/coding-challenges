@@ -2,7 +2,7 @@ package main.datadog.tree.review;
 
 import java.util.Stack;
 
-public class MaxRootToLeaftPathSum {
+public class MaxRootToLeafPathSum {
     public static void main(String[] args) {
         Node<Integer> root = Node.createIntegerTreeToCalculateRootToLeaft();
 
