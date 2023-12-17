@@ -11,17 +11,9 @@ public class MaxRootToLeaftPathSum {
     }
 
     public static Integer maxRootToLeaf(Node<Integer> node){
-                /*
-                   5
-           11            3
-        4     2      null   1
-      */
-
         if (node == null) return -Integer.MAX_VALUE;
         if (node.right == null && node.left == null) return node.value;
         return node.value + Math.max(maxRootToLeaf(node.left), maxRootToLeaf(node.right));
-
-
     }
 
     public static Integer maxRootToLeaftStack(Node<Integer> node) {
