@@ -61,6 +61,12 @@ public class Node<T> {
     }
 
     public static Node<Integer> createIntegerTreeToCalculateRootToLeaft(){
+        /*
+                   5
+           11            3
+        4     2      null   1
+      */
+
         Node<Integer> four = new Node<>(4);
         Node<Integer> two = new Node<>(2);
         Node<Integer> eleven = new Node<>(11, four, two);

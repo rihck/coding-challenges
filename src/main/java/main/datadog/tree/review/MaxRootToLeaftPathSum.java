@@ -6,15 +6,22 @@ public class MaxRootToLeaftPathSum {
     public static void main(String[] args) {
         Node<Integer> root = Node.createIntegerTreeToCalculateRootToLeaft();
 
-        System.out.println(maxRootToLeaft(root));
+        System.out.println(maxRootToLeaf(root));
         System.out.println(maxRootToLeaftStack(root));
     }
 
-    public static Integer maxRootToLeaft(Node<Integer> node){
+    public static Integer maxRootToLeaf(Node<Integer> node){
+                /*
+                   5
+           11            3
+        4     2      null   1
+      */
+
         if (node == null) return -Integer.MAX_VALUE;
         if (node.right == null && node.left == null) return node.value;
+        return node.value + Math.max(maxRootToLeaf(node.left), maxRootToLeaf(node.right));
 
-        return node.value + Math.max(maxRootToLeaft(node.left), maxRootToLeaft(node.right));
+
     }
 
     public static Integer maxRootToLeaftStack(Node<Integer> node) {
