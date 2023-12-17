@@ -1,6 +1,10 @@
 package main.datadog.tree.review;
 
+import org.junit.Test;
+
 import java.util.Stack;
+
+import static org.junit.Assert.assertEquals;
 
 public class MaxRootToLeafPathSum {
     public static void main(String[] args) {
@@ -10,13 +14,26 @@ public class MaxRootToLeafPathSum {
         System.out.println(maxRootToLeafStack(root));
     }
 
-    public static Integer maxRootToLeaf(Node<Integer> node){
+    @Test
+    public void test() {
+                /*
+                   5
+           11            3
+        4     2      null   1
+      */
+        Node<Integer> root = Node.createIntegerTreeToCalculateRootToLeaft();
+
+        assertEquals(20, maxRootToLeaf(root));
+        assertEquals(20, maxRootToLeafStack(root));
+    }
+
+    public static int maxRootToLeaf(Node<Integer> node){
         if (node == null) return -Integer.MAX_VALUE;
         if (node.right == null && node.left == null) return node.value;
         return node.value + Math.max(maxRootToLeaf(node.left), maxRootToLeaf(node.right));
     }
 
-    public static Integer maxRootToLeafStack(Node<Integer> node) {
+    public static int maxRootToLeafStack(Node<Integer> node) {
         Stack<Node<Integer>> nodeStack = new Stack<>();
         Stack<Integer> sumStack = new Stack<>();
 
