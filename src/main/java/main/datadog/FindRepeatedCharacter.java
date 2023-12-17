@@ -18,6 +18,9 @@ public class FindRepeatedCharacter {
             stringCount.put(currentChar, stringCount.get(currentChar) + 1);
         }
 
+        String stringVerson = stringCount.entrySet().stream().map(e -> e.getKey() + "" + e.getValue()).collect(Collectors.joining());
+
+
         return stringCount.entrySet().stream().map(e -> e.getKey() + "" + e.getValue()).collect(Collectors.toList());
     }
 
