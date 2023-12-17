@@ -7,7 +7,7 @@ public class MaxRootToLeafPathSum {
         Node<Integer> root = Node.createIntegerTreeToCalculateRootToLeaft();
 
         System.out.println(maxRootToLeaf(root));
-        System.out.println(maxRootToLeaftStack(root));
+        System.out.println(maxRootToLeafStack(root));
     }
 
     public static Integer maxRootToLeaf(Node<Integer> node){
@@ -16,7 +16,7 @@ public class MaxRootToLeafPathSum {
         return node.value + Math.max(maxRootToLeaf(node.left), maxRootToLeaf(node.right));
     }
 
-    public static Integer maxRootToLeaftStack(Node<Integer> node) {
+    public static Integer maxRootToLeafStack(Node<Integer> node) {
         Stack<Node<Integer>> nodeStack = new Stack<>();
         Stack<Integer> sumStack = new Stack<>();
 
