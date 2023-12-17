@@ -77,4 +77,35 @@ public class Node<T> {
         Node<Integer> five = new Node<>(5, eleven, three);
         return five;
     }
+
+    public static Node<Integer> createIntFrom0to9(){
+        /*
+                   5
+           7            3
+        4     2      null   1
+      */
+
+        Node<Integer> four = new Node<>(4);
+        Node<Integer> two = new Node<>(2);
+        Node<Integer> seven = new Node<>(7, four, two);
+
+        Node<Integer> one = new Node<>(1);
+        Node<Integer> three = new Node<>(3, null, one);
+
+        Node<Integer> five = new Node<>(5, seven, three);
+        return five;
+    }
+
+    public static Node<Integer> createInt2LevelNumbers1to3(){
+        /*
+                   1
+           2            3
+      */
+
+        Node<Integer> two = new Node<>(2);
+        Node<Integer> three = new Node<>(3);
+        Node<Integer> one = new Node<>(1, two, three);
+
+        return one;
+    }
 }
