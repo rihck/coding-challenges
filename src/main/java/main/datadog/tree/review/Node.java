@@ -1,9 +1,9 @@
 package main.datadog.tree.review;
 
 public class Node<T> {
-    T value;
-   Node<T> right;
-   Node<T> left;
+   public T value;
+   public Node<T> right;
+   public Node<T> left;
 
     public Node(T value){
         this.value = value;

@@ -1,5 +1,6 @@
-package main.datadog.tree.review;
+package main.datadog;
 
+import main.datadog.tree.review.Node;
 import org.junit.Test;
 
 import java.util.Stack;
